@@ -19,6 +19,9 @@ input.addEventListener('submit',(e)=> {
                 year = data.Search[i].Year;
                 img = data.Search[i].Poster;
                 id = data.Search[i].imdbID;
+                if(img === 'N/A'){
+                    img = '1.jpeg';
+                }
                 output += `
                     <div class="col-md-3">
                         <div class="card">
@@ -47,11 +50,14 @@ function modinit(str){
     .then((res) => res.json())
     .then((data) => {
         console.log(data);
-
+        let img = data.Poster;
+        if (img === 'N/A') {
+            img = '1.jpeg';
+        }
         document.getElementById('modbod').innerHTML = `
         <div class="row">
             <div class="col-6" id="img">
-            <img src="${data.Poster}">
+            <img src="${img}">
             </div>
             <div class="col-6" id="content">
                 <div class="row">
